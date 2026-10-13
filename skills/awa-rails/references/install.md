@@ -78,7 +78,7 @@ Use the client's remote HTTP MCP connection and supported secret/environment ref
 
 1. Initialize the MCP session with the host and discover tools via `tools/list`.
 2. Call `get_transport_capabilities`, then `list_companies`. Resolve the company by CNPJ and report `nfse_emission`, `nfe_distribution`, `nfe_events` and `cert_check` separately.
-3. `list_notes` and `list_emissions` can show existing documents. Do not emit a test invoice, send a manifestation, run `sync_notes` or call `test_certificate` solely to prove installation.
+3. `list_notes` and `list_emissions` can show existing documents. Do not emit a test invoice, send a manifestation or run `sync_notes` solely to prove installation. An authorized `test_certificate` can check stored certificate material; inspect `verification` and `provider_contacted`, because the current homologation implementation performs local validation without contacting SEFAZ.
 4. Inspect `isError` in a tool result even if HTTP succeeded. If tools are absent after installation, guide a reload/reconnect and report the actual state.
 
 Then help with the user's authorized workflow using [operations.md](operations.md) and [webhooks.md](webhooks.md). Ask only for missing business facts, secret entry in the proper secure surface, or actions needing authorization that the user has not already supplied.
