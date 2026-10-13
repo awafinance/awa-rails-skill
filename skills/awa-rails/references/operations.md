@@ -7,6 +7,7 @@ Always discover current schemas with `tools/list`. These tool names are the curr
 | Check active environments | `get_transport_capabilities` |
 | Company and certificate | `list_companies`, `upload_certificate`, `test_certificate` |
 | Tax profile | `get_tax_profile`, `set_tax_profile`, `confirm_tax_profile` |
+| Received NFS-e pilot | `receive_nfse`, `list_received_nfse`, `get_received_nfse` |
 | Received NF-e | `sync_notes`, `list_notes`, `get_note` |
 | Recipient events | `manifest_note`, `set_auto_ciencia` |
 | NFS-e emission | `emit_nfse`, `reconcile_emission`, `list_emissions` |
@@ -55,3 +56,11 @@ Base path: `<AWA_RAILS_URL>/api/v1`. Same bearer key. Company paths begin `/comp
 - `PATCH /companies/{id}` with `auto_ciencia`, `webhook_url`, or `rotate_webhook_secret` as needed; `POST .../webhook/test`.
 
 REST errors have an HTTP status and `error.code`/`error.message`; validation can add `error.fields`. For `trial_exhausted`, direct the user to the account's actual quota/billing state rather than retrying or creating another organization.
+
+## Receive one existing NFS-e
+
+Check `nfse_receipt` and the company's `nfse_receipt_enabled`. This pilot requires an explicit company allowlist and a known NSU from the contributor's existing ADN distribution. With authorization to read that document, call `receive_nfse` with `{company_id, nsu}`. Then call `list_received_nfse` with `{company_id}` or `get_received_nfse` with `{company_id, note_id}` for XML.
+
+The response contains `note.environment`, `mocked=false`, `provider_contacted` and `idempotent_replay`. A stored replay makes no new provider call, quota reservation or webhook. A new receipt queues `nfse.received` when a receiver is configured. NF-e manifestation tools do not apply to NFS-e. This is a point lookup, not continuous distribution or a cursor takeover. Emission remains under its separate gate.
+
+REST: `POST /companies/{cid}/received-nfse` with `{"nsu":"42"}`; `GET /companies/{cid}/received-nfse`; `GET /companies/{cid}/received-nfse/{note_id}` under `/api/v1`.

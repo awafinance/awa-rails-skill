@@ -20,7 +20,7 @@ There is currently no webhook-test MCP tool. Use the authenticated REST operatio
 
 `POST <AWA_RAILS_URL>/api/v1/companies/{company_id}/webhook/test`
 
-It queues `webhook.test`; a queued response is not proof of delivery. Check the receiver's verified event and, when authorized, its notification result. The test never emits or manifests an invoice. It proves receiver plumbing only; live fiscal receipt requires a genuine `nfe.received` event.
+It queues `webhook.test`; a queued response is not proof of delivery. Check the receiver's verified event and, when authorized, its notification result. The test never emits or manifests an invoice. It proves receiver plumbing only; live fiscal receipt requires a genuine `nfe.received` or `nfse.received` event.
 
 Envelope:
 
@@ -40,7 +40,7 @@ Envelope:
 }
 ```
 
-Events: `nfe.received`, `nfe.manifested`, `nfe.full_xml_available`, `nfse.emitted`, `tax_profile.review_required`, `webhook.test`. Use `nfe.received` for new-document notifications. `nfe.full_xml_available` indicates an upgrade of an existing note, not necessarily a new invoice.
+Events: `nfse.received`, `nfe.received`, `nfe.manifested`, `nfe.full_xml_available`, `nfse.emitted`, `tax_profile.review_required`, `webhook.test`. Use `nfe.received` for NF-e and `nfse.received` for NFS-e new-document notifications. The NFS-e pilot receives one known NSU; it does not start continuous polling. `nfe.full_xml_available` indicates an upgrade of an existing note, not necessarily a new invoice.
 
 A fiscal event payload does not itself certify a real fiscal operation. Use its `company_id`/`note_id` with `get_note` (or `list_emissions` for NFS-e) to inspect `environment`, `mocked` and status before claiming validity. Notify only the user-selected destination and disclose the minimal fiscal information needed there.
 
