@@ -1,0 +1,25 @@
+{
+  "idempotency_key": "inv-2026-10-001",
+  "competence": "2026-10-01",
+  "customer": {
+    "cnpj": "90000000000184",
+    "name": "CLIENTE SINTETICO DE TESTE LTDA",
+    "address": {
+      "municipality_code": "3304557",
+      "postal_code": "20040020",
+      "street": "Rua Exemplo",
+      "number": "100",
+      "complement": "",
+      "district": "Centro"
+    }
+  },
+  "service": {
+    "description": "Licenciamento de uso de programa de computação - mensalidade 10/2026"
+  },
+  "values": {
+    "service_amount": "2000.00",
+    "approximate_federal_tax_amount": "300.00",
+    "approximate_state_tax_amount": "0.00",
+    "approximate_municipal_tax_amount": "100.00"
+  }
+}
