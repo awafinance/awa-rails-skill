@@ -21,6 +21,10 @@ For installation and client-specific configuration, read [references/install.md]
 3. Configure the actual agent client and check MCP initialization and `tools/list`. Then call `get_transport_capabilities` and `list_companies`. Select the company by CNPJ; do not pick the first result when multiple companies exist.
 4. Report which operations are real homologation and which are mocked. Reading capabilities, listing companies and listing existing notes/emissions are sufficient connection checks. Setup alone does not authorize emission, manifestation, certificate replacement or provider calls.
 
+## Search stored notes
+
+Read [references/search.md](https://raw.githubusercontent.com/awafinance/awa-rails-skill/main/skills/awa-rails/references/search.md). Use `search_notes` to search received NF-e/NFS-e by supplier CNPJ, number, exact access key, amount or emission period. Follow cursor pagination to cover every stored match. Invoice numbers can repeat across suppliers and series. This is a read-only stored-data search; it does not sync government history. GraphQL exposes the same search at `/graphql`.
+
 ## Fiscal operations
 
 Read [references/operations.md](https://raw.githubusercontent.com/awafinance/awa-rails-skill/main/skills/awa-rails/references/operations.md) when preparing an emission, distribution sync or manifestation. Discover the live tool schemas with `tools/list` rather than guessing arguments.
