@@ -7,7 +7,7 @@ Always discover current schemas with `tools/list`. These tool names are the curr
 | Check active environments | `get_transport_capabilities` |
 | Company and certificate | `list_companies`, `upload_certificate`, `test_certificate` |
 | Tax profile | `get_tax_profile`, `set_tax_profile`, `confirm_tax_profile` |
-| Received NFS-e pilot | `receive_nfse`, `list_received_nfse`, `get_received_nfse` |
+| Received NFS-e pilot | `receive_nfse`, `list_received_nfse`, `get_received_nfse`, `get_nfse_receipt_sync`, `set_nfse_receipt_sync` |
 | Received NF-e | `sync_notes`, `list_notes`, `get_note` |
 | Recipient events | `manifest_note`, `set_auto_ciencia` |
 | NFS-e emission | `emit_nfse`, `reconcile_emission`, `list_emissions` |
@@ -64,3 +64,11 @@ Check `nfse_receipt` and the company's `nfse_receipt_enabled`. This pilot requir
 The response contains `note.environment`, `mocked=false`, `provider_contacted` and `idempotent_replay`. A stored replay makes no new provider call, quota reservation or webhook. A new receipt queues `nfse.received` when a receiver is configured. NF-e manifestation tools do not apply to NFS-e. This is a point lookup, not continuous distribution or a cursor takeover. Emission remains under its separate gate.
 
 REST: `POST /companies/{cid}/received-nfse` with `{"nsu":"42"}`; `GET /companies/{cid}/received-nfse`; `GET /companies/{cid}/received-nfse/{note_id}` under `/api/v1`.
+
+## Continuous NFS-e receipt
+
+Read `get_nfse_receipt_sync` for the selected company. First activation requires explicit authorization and `{company_id, enabled: true, start_after_nsu: "57"}` via `set_nfse_receipt_sync`. The number is an example: choose the user's intended starting cursor. `0` requests history; do not backfill without authorization. Subsequent `{company_id, enabled: false/true}` pauses/resumes without resetting the cursor or bypassing backoff.
+
+The worker runs without browser traffic, at 15-minute intervals after advancing a page and one hour after empty results or failures. Only complete, validated NFS-e addressed to the company are ingested. Issued/intermediary notes are skipped after validation; unknown document formats stop processing and preserve the cursor for diagnosis. Each page's notes, quota, webhooks and cursor commit atomically. Failed pages are retried; duplicates consume no extra quota. Quota exhaustion is visible in the sync status. A webhook destination is optional, and no notification is delivered without one. This worker has its own per-company/environment cursor and does not take over another system's cursor.
+
+REST: `GET/PATCH /api/v1/companies/{cid}/nfse-receipt-sync`. `last_success_at` proves the last completed poll, not receipt of a new note or webhook delivery. No NF-e polling or fiscal events are enabled by this setting.
