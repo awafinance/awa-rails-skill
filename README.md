@@ -10,7 +10,7 @@ https://raw.githubusercontent.com/awafinance/awa-rails-skill/main/skills/awa-rai
 
 Instale a skill awa-rails de https://github.com/awafinance/awa-rails-skill, incluindo suas referências, preservando minha configuração atual.
 Conecte o MCP em https://rails.awafinance.com/mcp. Me guie para criar a chave na aba Chaves de API e guardá-la como AWA_RAILS_API_KEY nas configurações de segredos; nunca neste chat.
-Descubra as ferramentas, consulte as capacidades, confirme minha empresa e explique como emitir NFS-e, receber NFS-e e NF-e e fazer ciência e manifestação de NF-e.
+Descubra as ferramentas, consulte as capacidades, explique a busca paginada search_notes por fornecedor, número, chave, valor e período de emissão, confirme minha empresa e explique como emitir NFS-e, receber NFS-e e NF-e e fazer ciência e manifestação de NF-e.
 Me ajude a configurar um receptor HTTPS de webhooks com assinatura verificada, deduplicação e notificações no serviço que eu escolher. Para recepção contínua de NFS-e, ative o worker somente com minha autorização e um NSU inicial explícito. Para NF-e, configure sincronização externa autorizada, respeitando os intervalos da SEFAZ.
 Valide a conexão com consultas sem efeitos fiscais. Só emita, manifeste, publique um receptor ou envie notificações quando eu tiver autorizado essas ações. Diga o que está pronto e o que ainda depende de mim.
 ```
@@ -20,6 +20,7 @@ O agente identifica seu cliente e instala as instruções. Você faz login no Ra
 - [Skill](skills/awa-rails/SKILL.md)
 - [Instalação e configuração do MCP](skills/awa-rails/references/install.md)
 - [Operações fiscais](skills/awa-rails/references/operations.md)
+- [Busca paginada e GraphQL](skills/awa-rails/references/search.md)
 - [Webhooks e notificações](skills/awa-rails/references/webhooks.md)
 - [Perfil tributário suportado](skills/awa-rails/references/tax-profile.md)
 

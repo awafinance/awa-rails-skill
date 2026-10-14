@@ -8,6 +8,7 @@ Always discover current schemas with `tools/list`. These tool names are the curr
 | Company and certificate | `list_companies`, `upload_certificate`, `test_certificate` |
 | Tax profile | `get_tax_profile`, `set_tax_profile`, `confirm_tax_profile` |
 | Received NFS-e pilot | `receive_nfse`, `list_received_nfse`, `get_received_nfse`, `get_nfse_receipt_sync`, `set_nfse_receipt_sync` |
+| Search stored received notes | `search_notes` (see [search.md](search.md)) |
 | Received NF-e | `sync_notes`, `list_notes`, `get_note` |
 | Recipient events | `manifest_note`, `set_auto_ciencia` |
 | NFS-e emission | `emit_nfse`, `reconcile_emission`, `list_emissions` |
