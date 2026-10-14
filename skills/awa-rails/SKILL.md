@@ -39,7 +39,7 @@ The MCP **emits NFS-e and receives NF-e**, plus one existing NFS-e by a known NS
 
 Read [references/webhooks.md](https://raw.githubusercontent.com/awafinance/awa-rails-skill/main/skills/awa-rails/references/webhooks.md) to set up an HTTPS receiver and a user-selected notification destination. Store the signing secret outside chat/source, verify signatures on raw bytes, deduplicate deliveries, and test with `webhook.test` before claiming the receiver is ready.
 
-A webhook is delivered when the Rails app ingests a document; it does not itself poll SEFAZ, and an MCP connection does not push a message into an idle agent. If ongoing receipt is requested, arrange authorized `sync_notes` scheduling that respects the cooldown, and connect the receiver to a notification service or a supported agent wake-up mechanism.
+A webhook is delivered when the Rails app ingests a document; it does not itself poll SEFAZ, and an MCP connection does not push a message into an idle agent. For ongoing NFS-e receipt, explicitly activate `set_nfse_receipt_sync` with the selected initial cursor. For ongoing NF-e receipt, arrange authorized `sync_notes` scheduling that respects the SEFAZ cooldown. A receiver is optional; when requested, connect it to the user-selected notification service or a supported agent wake-up mechanism.
 
 ## Handling failures
 
