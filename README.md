@@ -10,8 +10,8 @@ https://raw.githubusercontent.com/awafinance/awa-rails-skill/main/skills/awa-rai
 
 Instale a skill awa-rails de https://github.com/awafinance/awa-rails-skill, incluindo suas referências, preservando minha configuração atual.
 Conecte o MCP em https://rails.awafinance.com/mcp. Me guie para criar a chave na aba Chaves de API e guardá-la como AWA_RAILS_API_KEY nas configurações de segredos; nunca neste chat.
-Descubra as ferramentas, consulte as capacidades, confirme minha empresa e explique como emitir NFS-e, receber NF-e e fazer ciência e manifestação.
-Me ajude a configurar um receptor HTTPS de webhooks com assinatura verificada, deduplicação e notificações no serviço que eu escolher. Para receber notas continuamente, configure também a sincronização autorizada, respeitando os intervalos da SEFAZ.
+Descubra as ferramentas, consulte as capacidades, confirme minha empresa e explique como emitir NFS-e, receber NFS-e e NF-e e fazer ciência e manifestação de NF-e.
+Me ajude a configurar um receptor HTTPS de webhooks com assinatura verificada, deduplicação e notificações no serviço que eu escolher. Para recepção contínua de NFS-e, ative o worker somente com minha autorização e um NSU inicial explícito. Para NF-e, configure sincronização externa autorizada, respeitando os intervalos da SEFAZ.
 Valide a conexão com consultas sem efeitos fiscais. Só emita, manifeste, publique um receptor ou envie notificações quando eu tiver autorizado essas ações. Diga o que está pronto e o que ainda depende de mim.
 ```
 
@@ -23,6 +23,6 @@ O agente identifica seu cliente e instala as instruções. Você faz login no Ra
 - [Webhooks e notificações](skills/awa-rails/references/webhooks.md)
 - [Perfil tributário suportado](skills/awa-rails/references/tax-profile.md)
 
-O MCP emite **NFS-e** e recebe **NF-e**. Não há emissão de NF-e pelo MCP. Consulte as capacidades ativas: operações reais de homologação e simulação são distintas. Produção fiscal permanece bloqueada. Um webhook não inicia a consulta à SEFAZ nem acorda automaticamente um agente.
+O MCP emite **NFS-e** e recebe **NFS-e** e **NF-e**. Não há emissão de NF-e pelo MCP. Consulte as capacidades ativas: operações reais de homologação e simulação são distintas. Emissão e eventos de NF-e em produção permanecem bloqueados; a recepção de NFS-e tem um piloto separado com allowlist explícita. Um webhook não inicia a consulta à SEFAZ nem acorda automaticamente um agente.
 
 Este repositório contém somente a skill e suas referências públicas. A API e o app estão em https://rails.awafinance.com.
